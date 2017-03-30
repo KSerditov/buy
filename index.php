@@ -50,7 +50,9 @@
                        data: data,
                        success: function(data)
                        {
-                           $("#Results").append(data);
+                            $("#Results").empty();
+                            $("#ready").remove();
+                            $("#Results").append(data);
                        }
                      });
 
@@ -71,7 +73,7 @@
         <form id="form" class="form-styled" action="process.php" method="post">
             <div id="dynamicItems"></div>
             <p id="add">+ещё</p>
-            <input type="submit" value="Готово!"/>
+            <input id="ready" type="submit" value="Готово!"/>
         </form>
         <div id="Results"></div>
     </body>

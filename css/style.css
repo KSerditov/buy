@@ -93,6 +93,41 @@ p[id=copyLink]
     display: inline-block;
 }
 
+div[class="item"],
+div[class="count"],
+div[class="head_item"],
+div[class="head_count"]
+{
+    background: transparent;
+    display: inline-block;
+    border: none;
+    border-bottom: 1px dashed #000000;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-style: italic;
+    margin: 0px 0px 5px 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+div[class="item"],
+div[class="head_item"]
+{
+    width: 350px;
+
+}
+
+div[class="head_item"],
+div[class="head_count"]
+{
+    text-align: center;
+    color:#e1dece;
+    border-bottom: 1px dashed #e1dece;
+}
+
+li {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-style: italic;
+    }
 
 /*top right bottom left*/
 

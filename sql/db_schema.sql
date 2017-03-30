@@ -1,16 +1,22 @@
+DROP TABLE IF EXISTS items;
+
 CREATE TABLE `items` (
   `item_id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(128) BINARY COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`item_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+DROP TABLE IF EXISTS links;
+
 CREATE TABLE `links` (
   `link_id` int(11) NOT NULL AUTO_INCREMENT,
-  `link` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `link` varchar(32) BINARY COLLATE utf8_unicode_ci NOT NULL,
   `creation_date` datetime NOT NULL,
   PRIMARY KEY (`link_id`),
   UNIQUE KEY `idx_links_history_link_id` (`link`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+DROP TABLE IF EXISTS items_list;
 
 CREATE TABLE `items_list` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
