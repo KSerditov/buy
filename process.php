@@ -9,9 +9,9 @@
 $id = base_convert(time(), 10, 36);
 
 for($i = 0; $i < count($_POST['item']); $i++){
-    echo $_POST['item'][$i]." ".$_POST['count'][$i]."</br>";
+    //echo $_POST['item'][$i]." ".$_POST['count'][$i]."</br>";
 }
 
-echo "Link: ".$id;
+echo "<input type=\"text\" class=\"link\" value=\"http://192.168.56.132/buy/view.php?v=".$id."\" onclick=\"select()\" readonly/><p id=\"copyLink\">Копировать</p>";
 
 ?>

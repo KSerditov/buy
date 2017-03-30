@@ -60,6 +60,9 @@
 
             $(document).ready(addItem);
 
+            function resizeInput(){
+                $(this).attr('size', $(this).val().length);
+            };
 
         </script>
         <title>Покупки</title>
