@@ -1,33 +1,42 @@
 <html>
     <head>
+        <link rel="stylesheet" type="text/css" href="css/style.css"/>
         <script type="text/javascript" src="./libs/jquery-3.2.0.js"></script>
         <script type="text/javascript">
+
+            function generateSelect(item_id){
+                var $r = '<select class="cntItems" name="count[' + item_id + ']">';
+                    for(var i = 1; i < 10; i++){
+                        $r += '<option value=' + i + '>' + i + '</option>';
+                    }
+                    $r += '<option value="-1">Не знаю</option>'
+                    $r += '</select>';
+
+                    return $r;
+            }
+
             var items = 0;
 
-            function AddItem(){
-                var $input = '<div id=' + items + '><input type="text" name="item[' + items + ']"><select name="count[' + items + ']">';
-                
-                for(var i = 1; i < 10; i++){
-                    $input += '<option value=' + i + '>' + i + '</option>';
-                }
+            function addItem(){
+                var $input = '<div id=' + items + ' class="line">'
+                    $input += '<input type="text" name="item[' + items + ']" required="true">';
+                    $input += generateSelect(items);
+                    $input += '<div id="deleteItem">X</div>';
 
-                $input += '<option value="-1">Не знаю</option></select>'
-                $input += '<div id="DeleteItem">Удалить</div></div>';
-
-                $("#dynamicItems").append($input);
-                items++;
+                    $("#dynamicItems").append($input);
+                    items++;
             };
 
-            $(document).ready(function(){
-                $("#Add").click(AddItem);
-            });
-
-            function DeleteItem(){
+            function deleteItem(){
                 $(this).parent("div").remove();
             };
 
             $(document).ready(function(){
-                $('#dynamicItems').on("click","#DeleteItem",DeleteItem);
+                $("#add").click(addItem);
+            });
+
+            $(document).ready(function(){
+                $('#dynamicItems').on("click","#deleteItem",deleteItem);
             });
 
             $(document).ready(function(){
@@ -49,24 +58,18 @@
                 })
             });
 
-            $(document).ready(function(){
-                $("#Ready").click(function(){
-                    $("form#form").submit();
-                });
-            });
+            $(document).ready(addItem);
 
-            $(document).ready(AddItem);
 
         </script>
         <title>Покупки</title>
     </head>
     <body>
-        <form id="form" action="process.php" method="post">
-            <div id="dynamicItems">
-            </div>
+        <form id="form" class="form-styled" action="process.php" method="post">
+            <div id="dynamicItems"></div>
+            <p id="add">+ещё</p>
+            <input type="submit" value="Готово!"/>
         </form>
-        <div id="Add"><p>Добавить</p></div>
-        <div id="Ready"><p>Готово</p></div>
         <div id="Results"></div>
     </body>
 </html>
