@@ -4,9 +4,7 @@
         <script type="text/javascript" src="./libs/jquery-3.2.0.js"></script>
         <script src="./libs/clipboard.min.js"></script>
         <script type="text/javascript">
-                var btn = document.getElementById('copyLink');
-                var clipboard = new Clipboard(btn);
-
+            
             function generateSelect(item_id){
                 var $r = '<select class="cntItems" name="count[' + item_id + ']">';
                     for(var i = 1; i < 10; i++){
@@ -67,6 +65,24 @@
 
             function resizeInput(){
                 $(this).attr('size', $(this).val().length);
+            };
+
+            $(document).ready(function(){
+                $('#Results').on("click","#copyLink",copyCpbd);
+            });
+
+            function copyCpbd() {
+                //alert("Yeah");
+              var copyTextarea = document.querySelector('#inputLink');
+              copyTextarea.select();
+
+              try {
+                var successful = document.execCommand('copy');
+                var msg = successful ? 'successful' : 'unsuccessful';
+                console.log('Copying text command was ' + msg);
+              } catch (err) {
+                console.log('Oops, unable to copy');
+              }
             };
 
         </script>
