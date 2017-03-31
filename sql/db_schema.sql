@@ -4,7 +4,7 @@ CREATE TABLE `items` (
   `item_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(128) BINARY COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`item_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 DROP TABLE IF EXISTS links;
 
@@ -14,7 +14,7 @@ CREATE TABLE `links` (
   `creation_date` datetime NOT NULL,
   PRIMARY KEY (`link_id`),
   UNIQUE KEY `idx_links_history_link_id` (`link`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 DROP TABLE IF EXISTS items_list;
 
@@ -28,7 +28,7 @@ CREATE TABLE `items_list` (
   KEY `fk_items_list_item_id` (`item_id`),
   CONSTRAINT `fk_items_list_item_id` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`),
   CONSTRAINT `fk_items_list_link_id` FOREIGN KEY (`link_id`) REFERENCES `links` (`link_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
 
