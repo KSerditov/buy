@@ -2,7 +2,10 @@
     <head>
         <link rel="stylesheet" type="text/css" href="css/style.css"/>
         <script type="text/javascript" src="./libs/jquery-3.2.0.js"></script>
+        <script src="./libs/clipboard.min.js"></script>
         <script type="text/javascript">
+                var btn = document.getElementById('copyLink');
+                var clipboard = new Clipboard(btn);
 
             function generateSelect(item_id){
                 var $r = '<select class="cntItems" name="count[' + item_id + ']">';
