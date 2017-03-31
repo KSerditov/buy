@@ -4,8 +4,7 @@
 	<script type="text/javascript" src="./libs/jquery-3.2.0.js"></script>
 	<script type="text/javascript">
 
-		function strike(){
-			//$(this).css("color","#e1dece");			
+		function strike(){		
 			$(this).parent().find('.count').css({"color": "#e1dece", "border-bottom": "1px dashed #e1dece"});
 			$(this).parent().find('.item').css({"color": "#e1dece", "border-bottom": "1px dashed #e1dece"});
 		};
@@ -25,24 +24,16 @@
 	</head>
 	<body>
 <?php
+include('config/config.php');
 
 if(isset($_GET['v'])){
-
 	$id = $_GET['v'];
-
-	//echo "<p>Id to display: ".$id."</p>";
 } else {
-	Header("Location: http://192.168.56.132/buy/index.php");
+	Header("Location: ".HOST."index.php");
 	exit();
 }
 
-$servername = "localhost";
-$username = "buy";
-$password = "Enkata@2";
-$dbname = "buy";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
+$conn = new mysqli(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
@@ -70,7 +61,7 @@ $conn->close();
 
 if( $items == 0 )
 {
-	Header("Location: http://192.168.56.132/buy/index.php");
+	Header("Location: ".HOST."index.php");
 	exit();
 }
 

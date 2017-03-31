@@ -1,43 +1,40 @@
 <?php
+include('config/config.php');
 
-// With this precision (microsecond) ID will looks like '2di2adajgq6h'
-
-//$id = base_convert(microtime(false), 10, 36);
-
-// With less precision (second) ID will looks like 'niu7pj'
+function mylog($msg){
+    error_log(date("Y-m-d H:i:s")." | ".__FILE__." | ".$msg."\n", 3, LOG_PATH);
+}
 
 $id = base_convert(time(), 10, 36);
 
-$servername = "localhost";
-$username = "buy";
-$password = "Enkata@2";
-$dbname = "buy";
+mylog("Processing for link: ".$id);
+mylog($id.": Request content:\n".print_r($_REQUEST, true));
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
+$conn = new mysqli(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// prepare and bind
 $stmt = $conn->prepare("CALL buy_AddNewLine(?,?,?)");
 
 $stmt->bind_param("ssi", $id, $item, $cnt);
+$arrItems = array_values($_POST['item']);
+$arrCounts = array_values($_POST['count']);
 
-for($i = 0; $i < count($_POST['item']); $i++){
+for($i = 0; $i < count($arrItems); $i++){
 
-    //run the store proc
-    $item = $_POST['item'][$i];
-    $cnt = $_POST['count'][$i];
+    mylog($id.": item=".$arrItems[$i]." count=".$arrCounts[$i]);
+
+    $item = $arrItems[$i];
+    $cnt = $arrCounts[$i];
     $stmt->execute();
-
 }
 
 $stmt->close();
 $conn->close();
 
-echo "<input type=\"text\" class=\"link\" value=\"http://192.168.56.132/buy/view.php?v=".$id."\" onclick=\"select()\" readonly/><p id=\"copyLink\">Копировать</p>";
+mylog($id.": All lines processed.");
+
+echo "<input type=\"text\" class=\"link\" value=\"".HOST."view.php?v=".$id."\" onclick=\"select()\" readonly/><p id=\"copyLink\">Копировать</p>";
 
 ?>
