@@ -26,9 +26,17 @@
 <?php
 include('config/config.php');
 
+function mylog($msg){
+    error_log(date("Y-m-d H:i:s")." | ".__FILE__." | ".$msg."\n", 3, LOG_PATH);
+}
+
+mylog(" Request content:\n".print_r($_REQUEST, true));
+
 if(isset($_GET['v'])){
 	$id = $_GET['v'];
+	mylog("Link is set: ".$id);
 } else {
+	mylog("Link is NOT set. Rerouting.");
 	Header("Location: ".HOST."index.php");
 	exit();
 }
@@ -50,6 +58,7 @@ echo "<ol>";
 echo "<div class=\"head_item\">Наименование</div><div class=\"head_count\">#</div>";
 
 while($stmt->fetch()){
+		mylog($id."#=".$items." item=".$name." count=".$count);
 		$items++;
 		echo "<li><div id=\"line".$items."\"><div class=\"item\">".$name."</div><div class=\"count\">".$count."</div></div></li>";
 }
@@ -61,9 +70,12 @@ $conn->close();
 
 if( $items == 0 )
 {
+	mylog($id." No items returned from DB. Rerouting.");
 	Header("Location: ".HOST."index.php");
 	exit();
 }
+
+	mylog($id." Success.");
 
 ?>
 
