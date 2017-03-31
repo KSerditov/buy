@@ -25,7 +25,7 @@ for($i = 0; $i < count($arrItems); $i++){
 
     mylog($id.": item=".$arrItems[$i]." count=".$arrCounts[$i]);
 
-    $item = $arrItems[$i];
+    $item = mysql_real_escape_string(trim($arrItems[$i]));
     $cnt = $arrCounts[$i];
     $stmt->execute();
 }

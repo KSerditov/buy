@@ -33,7 +33,7 @@ function mylog($msg){
 mylog(" Request content:\n".print_r($_REQUEST, true));
 
 if(isset($_GET['v'])){
-	$id = $_GET['v'];
+	$id = mysql_real_escape_string(trim($_GET['v']));
 	mylog("Link is set: ".$id);
 } else {
 	mylog("Link is NOT set. Rerouting.");
