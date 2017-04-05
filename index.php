@@ -2,7 +2,7 @@
     <head>
         <link rel="stylesheet" type="text/css" href="css/style.css"/>
         <script type="text/javascript" src="./libs/jquery-3.2.0.js"></script>
-        <script src="./libs/clipboard.min.js"></script>
+        <script type="text/javascript" src="./libs/clipboard.min.js"></script>
         <script type="text/javascript">
             
             function generateSelect(item_id){
@@ -54,6 +54,7 @@
                             $("#Results").empty();
                             $("#ready").remove();
                             $("#Results").append(data);
+                            addCopyHandler();
                        }
                      });
 
@@ -67,23 +68,9 @@
                 $(this).attr('size', $(this).val().length);
             };
 
-            $(document).ready(function(){
-                $('#Results').on("click","#copyLink",copyCpbd);
-            });
-
-            function copyCpbd() {
-                //alert("Yeah");
-              var copyTextarea = document.querySelector('#inputLink');
-              copyTextarea.select();
-
-              try {
-                var successful = document.execCommand('copy');
-                var msg = successful ? 'successful' : 'unsuccessful';
-                console.log('Copying text command was ' + msg);
-              } catch (err) {
-                console.log('Oops, unable to copy');
-              }
-            };
+            function addCopyHandler(){
+                var clipboard = new Clipboard('#copyLink');
+            }
 
         </script>
         <title>Покупки</title>

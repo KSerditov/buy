@@ -35,6 +35,6 @@ $conn->close();
 
 mylog($id.": All lines processed.");
 
-echo "<input id=\"inputLink\" type=\"text\" class=\"link\" value=\"".HOST."view.php?v=".$id."\" onclick=\"select()\" readonly/><p id=\"copyLink\">Копировать</p>";
+echo "<input id=\"inputLink\" type=\"text\" class=\"link\" value=\"".HOST."view.php?v=".$id."\" onfocus=\"select()\" readonly/><p id=\"copyLink\" data-clipboard-target=\"#inputLink\">Копировать</p>";
 
 ?>
