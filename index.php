@@ -76,11 +76,13 @@
         <title>Покупки</title>
     </head>
     <body>
+        <div class="section1">
         <form id="form" class="form-styled" action="process.php" method="post">
             <div id="dynamicItems"></div>
             <p id="add">+ещё</p>
             <input id="ready" type="submit" value="Готово!"/>
         </form>
         <div id="Results"></div>
+        </div>
     </body>
 </html>
