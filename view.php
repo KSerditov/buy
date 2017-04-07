@@ -23,6 +23,7 @@
 		</title>
 	</head>
 	<body>
+		<div class="section1">
 <?php
 include('config/config.php');
 
@@ -78,6 +79,6 @@ if( $items == 0 )
 	mylog($id." Success.");
 
 ?>
-
+		</div>
 	</body>
 </html>

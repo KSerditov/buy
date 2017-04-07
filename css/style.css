@@ -124,6 +124,11 @@ div[class="head_count"]
     border-bottom: 1px dashed #e1dece;
 }
 
+div[class="section1"]
+{
+    display: inline-block;
+}
+
 li {
     font-family: Georgia, "Times New Roman", Times, serif;
     font-style: italic;
