@@ -34,8 +34,7 @@ function mylog($msg){
 mylog(" Request content:\n".print_r($_REQUEST, true));
 
 if(isset($_GET['v'])){
-	$id = mysql_real_escape_string(trim($_GET['v']));
-	mylog("Link is set: ".$id);
+	mylog("Link is set: ".$_GET['v']);
 } else {
 	mylog("Link is NOT set. Rerouting.");
 	Header("Location: ".HOST."index.php");
@@ -46,6 +45,8 @@ $conn = new mysqli(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
+
+$id = mysqli_real_escape_string($conn, trim($_GET['v']));
 
 $stmt = $conn->prepare("CALL buy_GetList(?)");
 $stmt->bind_param("s", $id);
